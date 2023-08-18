@@ -1,7 +1,5 @@
 from abc import ABC, abstractmethod
 
-import connector
-
 
 class Command(ABC):
 

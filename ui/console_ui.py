@@ -1,4 +1,4 @@
-import connector
+import service
 from ui.menu import MainMenu
 
 
@@ -21,11 +21,24 @@ class ConsoleUI:
                 else:
                     print('\n')
                     self.menu.execute(user_input)
+                    print('\n')
             except ValueError as e:
                 print(f'Incorrect input: no such entry found: {user_input}')
 
+    def show_all_notes(self):
+        service.service.print_all_notes()
+
     def new_note(self):
         print("Creating new note")
+        title: str = input("Enter note title: ")
+        body: str = input("Enter note body: ")
+        print(f"You're gonna create note:\nTitle: {title}\nBody: {body}\nConfirm? y/n")
+        user_input = input()
+        if user_input == 'y':
+            service.service.add_note(title=title, body=body)
+            print("Note created")
+        else:
+            print("Creation cancelled")
 
     def edit_note(self):
         print("Edit note")
@@ -35,6 +48,7 @@ class ConsoleUI:
 
     def save_to_file(self):
         print("Save to file")
+        service.service.save_to_file()
 
     def load_from_file(self):
         print("Load from file")
@@ -42,8 +56,8 @@ class ConsoleUI:
     def change_working_file(self):
         print("Change working file")
         user_input = input("Please, enter file name: ")
-        connector.con.file_handler.set_file_path(file_path=user_input)
-        print(f'Working file has been changed to: "{connector.con.file_handler.get_file_path()}"\n')
+        service.service.file_handler.set_file_path(file_path=user_input)
+        print(f'Working file has been changed to: "{service.service.file_handler.get_file_path()}"\n')
 
     def end_program(self):
         print("Exiting program")

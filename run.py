@@ -1,6 +1,6 @@
-import connector
+import service
 
-con = connector.con
+service = service.service
 
 if __name__ == "__main__":
-    con.console_ui.start_program()
+    service.console_ui.start_program()

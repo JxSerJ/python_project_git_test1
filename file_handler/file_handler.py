@@ -12,8 +12,10 @@ class FileHandler:
 
     def save_notes_to_file(self, notes: list[Note]) -> bool:
         with open(file=self._file_path, mode="w", encoding="UTF-8") as file:
-            json.dump(obj=notes, fp=file)
-            return True
+            data = notes
+            json.dump(obj=data, fp=file)
+            print("Data written to file.")
+        return True
 
     def load_notes_from_file(self) -> list[Note]:
         result_list: list[Note] = []

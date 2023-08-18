@@ -6,6 +6,7 @@ from ui.commands.end_program import EndProgram
 from ui.commands.load_from_file import LoadFromFile
 from ui.commands.new_note import NewNote
 from ui.commands.save_to_file import SaveToFile
+from ui.commands.show_all_notes import ShowAllNotes
 
 
 class MainMenu:
@@ -15,6 +16,7 @@ class MainMenu:
     def __init__(self, console_ui):
         self.console_ui = console_ui
         self.command_list = []
+        self.command_list.append(ShowAllNotes(self.console_ui))
         self.command_list.append(NewNote(self.console_ui))
         self.command_list.append(EditNote(self.console_ui))
         self.command_list.append(DeleteNote(self.console_ui))
