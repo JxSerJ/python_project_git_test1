@@ -1,3 +1,4 @@
+import connector
 from ui.menu import MainMenu
 
 
@@ -37,6 +38,12 @@ class ConsoleUI:
 
     def load_from_file(self):
         print("Load from file")
+
+    def change_working_file(self):
+        print("Change working file")
+        user_input = input("Please, enter file name: ")
+        connector.con.file_handler.set_file_path(file_path=user_input)
+        print(f'Working file has been changed to: "{connector.con.file_handler.get_file_path()}"\n')
 
     def end_program(self):
         print("Exiting program")

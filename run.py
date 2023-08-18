@@ -1,7 +1,6 @@
+import connector
 
-from connector import ProgramObjects
-
-program_object: ProgramObjects = ProgramObjects()
+con = connector.con
 
 if __name__ == "__main__":
-    program_object.console_ui.start_program()
+    con.console_ui.start_program()

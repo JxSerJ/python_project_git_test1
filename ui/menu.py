@@ -1,3 +1,4 @@
+from ui.commands.change_file_path import ChangeWorkingFile
 from ui.commands.command import Command
 from ui.commands.delete_note import DeleteNote
 from ui.commands.edit_note import EditNote
@@ -15,10 +16,11 @@ class MainMenu:
         self.console_ui = console_ui
         self.command_list = []
         self.command_list.append(NewNote(self.console_ui))
-        self.command_list.append((EditNote(self.console_ui)))
-        self.command_list.append((DeleteNote(self.console_ui)))
-        self.command_list.append((SaveToFile(self.console_ui)))
-        self.command_list.append((LoadFromFile(self.console_ui)))
+        self.command_list.append(EditNote(self.console_ui))
+        self.command_list.append(DeleteNote(self.console_ui))
+        self.command_list.append(ChangeWorkingFile(self.console_ui))
+        self.command_list.append(SaveToFile(self.console_ui))
+        self.command_list.append(LoadFromFile(self.console_ui))
         self.command_list.append(EndProgram(self.console_ui))
 
     def add_command(self, command):
