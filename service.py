@@ -36,7 +36,15 @@ class Service:
         pass
 
     def save_to_file(self):
-        print(self.file_handler.save_notes_to_file(notes=self.notes_list))
+        print(f"Trying to save current data to file: {self.file_handler.get_file_path()}")
+        result: bool = self.file_handler.save_notes_to_file(notes=self.notes_list)
+        print("Save successful") if result else print("Data not saved")
+
+    def load_from_file(self):
+        print(f"Trying to load data to file: {self.file_handler.get_file_path()}")
+        self.notes_list, result = self.file_handler.load_notes_from_file()
+        self.set_id()
+        print("Data loaded successful") if result else print("Data not loaded")
 
 
 service = Service()

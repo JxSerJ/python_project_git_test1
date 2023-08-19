@@ -47,11 +47,10 @@ class ConsoleUI:
         print("Delete note")
 
     def save_to_file(self):
-        print("Save to file")
         service.service.save_to_file()
 
     def load_from_file(self):
-        print("Load from file")
+        service.service.load_from_file()
 
     def change_working_file(self):
         print("Change working file")
