@@ -1,1 +1,1 @@
-FILE_PATH = "notes.txt"
+FILE_PATH = "notes.json"
