@@ -24,5 +24,14 @@ class Note:
 
     def __str__(self):
         return (f"ID: {self.id}\n\t\tTitle: {self.title}\n\t\tBody: {self.body}\n"
-                f"\t\tCreated: {self.date_created}\n"
-                f"\t\tModified: {self.date_modified}\n")
+                f"\t\tCreated: {self.date_created.isoformat()}\n"
+                f"\t\tModified: {self.date_modified.isoformat()}\n")
+
+    def short_info(self):
+        return (f"ID: {self.id}, Title: {self.title}\n"
+                f"Last modified: {self.date_modified.isoformat()}\n")
+
+    def update_data(self, title: str, body: str):
+        self.title = title
+        self.body = body
+        self.date_modified = datetime.now()

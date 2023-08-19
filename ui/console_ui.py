@@ -42,9 +42,29 @@ class ConsoleUI:
 
     def edit_note(self):
         print("Edit note")
+        service.service.print_all_notes_short()
+        if service.service.notes_list.__len__() == 0:
+            print("Canceling operation")
+        else:
+            try:
+                note_id = int(input("Select ID of the note: "))
+                print(note_id)
+                print()
+                if note_id is None:
+                    print("No input. Canceling operation.")
+                elif service.service.check_id(note_id):
+                    title = input("Input new title: ")
+                    body = input("Input new note body: ")
+                    service.service.edit_note(note_id=note_id, title=title, body=body)
+                    print(f"Note changed:\n"
+                          f"{service.service.get_note_by_id(note_id=note_id).__str__()}")
+                else:
+                    print("No such note ID found")
+            except Exception as e:
+                print(f"Incorrect input: {str(e)}")
 
     def delete_note(self):
-        print("Delete note")
+        service.service.delete_note()
 
     def save_to_file(self):
         service.service.save_to_file()
@@ -54,9 +74,13 @@ class ConsoleUI:
 
     def change_working_file(self):
         print("Change working file")
+        print(f"Current working file: {service.service.file_handler.get_file_path()}")
         user_input = input("Please, enter file name: ")
-        service.service.file_handler.set_file_path(file_path=user_input)
-        print(f'Working file has been changed to: "{service.service.file_handler.get_file_path()}"\n')
+        if user_input:
+            service.service.file_handler.set_file_path(file_path=user_input)
+            print(f'Working file has been changed to: "{service.service.file_handler.get_file_path()}"\n')
+        else:
+            print("No input. Canceling operation.")
 
     def end_program(self):
         print("Exiting program")
