@@ -48,8 +48,6 @@ class ConsoleUI:
         else:
             try:
                 note_id = int(input("Select ID of the note: "))
-                print(note_id)
-                print()
                 if note_id is None:
                     print("No input. Canceling operation.")
                 elif service.service.check_id(note_id):
@@ -64,7 +62,24 @@ class ConsoleUI:
                 print(f"Incorrect input: {str(e)}")
 
     def delete_note(self):
-        service.service.delete_note()
+        print("Delete note")
+        service.service.print_all_notes_short()
+        if not service.service.notes_list.__len__() == 0:
+            try:
+                note_id = int(input("Select ID of the note: "))
+                if note_id is None:
+                    print("No input. Canceling operation.")
+                elif service.service.check_id(note_id):
+                    service.service.get_note_info_by_id(note_id=note_id)
+                    user_input = input("Confirm deletion? y/n: ")
+                    if user_input == "y":
+                        service.service.delete_note(note_id=note_id)
+                else:
+                    print("No such note ID found")
+            except Exception as e:
+                print(f"Incorrect input: {str(e)}")
+        else:
+            print("Canceling operation")
 
     def save_to_file(self):
         service.service.save_to_file()

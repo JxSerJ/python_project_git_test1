@@ -64,8 +64,13 @@ class Service:
                 print(note)
                 # print(f"ID: {note.id}. {note.title}\n{note.body}")
 
-    def delete_note(self, note_id: int):
-        pass
+    def delete_note(self, note_id: int) -> bool:
+        for i in range(self.notes_list.__len__()):
+            if self.notes_list[i].id == note_id:
+                self.notes_list.pop(i)
+                self.update_id()
+                return True
+        return False
 
     def save_to_file(self):
         print(f"Trying to save current data to file: {self.file_handler.get_file_path()}")
