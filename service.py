@@ -82,6 +82,7 @@ class Service:
         self.notes_list, result = self.file_handler.load_notes_from_file()
         self.update_id()
         print("Data loaded successful") if result else print("Data not loaded")
+        print("")
 
 
 service = Service()
